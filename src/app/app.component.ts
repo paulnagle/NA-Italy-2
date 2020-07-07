@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { TranslateService } from '@ngx-translate/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -9,48 +10,69 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'HOME',
+      url: '/home',
+      icon: 'home'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'SETTINGS',
+      url: '/settings',
+      icon: 'settings'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'MEETINGLIST',
+      url: '/list',
+      icon: 'list'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'GOOGLE_MAPS',
+      url: '/map',
+      icon: 'map'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'JUSTFORTODAY',
+      url: '/jft',
+      icon: 'book'
     },
     {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: 'CALC',
+      url: '/calc',
+      icon: 'stopwatch'
+    },
+
+    {
+      title: 'POSTS',
+      url: '/events',
+      icon: 'calendar'
+    },
+    {
+      title: 'CONTACT',
+      url: '/contact',
+      icon: 'contact'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private translate: TranslateService,
+    private storage: Storage
   ) {
     this.initializeApp();
+    this.translate.setDefaultLang('en');
+    storage.get('language').then((value) => {
+      if (value) {
+        this.translate.use(value);
+      } else {
+        this.translate.use('en');
+        storage.set('language', 'en');
+      }
+    });
   }
 
   initializeApp() {
@@ -60,10 +82,4 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
-  }
 }

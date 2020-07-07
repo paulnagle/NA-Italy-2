@@ -4,13 +4,46 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'home',
+    loadChildren: './pages/home/home.module#HomePageModule'
+  },
+  {
+    path: 'settings',
+    loadChildren: './pages/settings/settings.module#SettingsPageModule'
+  },
+  {
+    path: 'list',
+    loadChildren: './pages/list/list.module#ListPageModule'
+  },
+  {
+    path: 'jft',
+    loadChildren: './pages/jft/jft.module#JftPageModule'
+  },
+  {
+    path: 'calc',
+    loadChildren: './pages/calc/calc.module#CalcPageModule'
+  },
+  {
+    path: 'contact',
+    loadChildren: './pages/contact/contact.module#ContactPageModule'
+  },
+  {
+    path: 'map',
+    loadChildren: './pages/map/map.module#MapPageModule'
+  },
+  {
+    path: 'events',
+    loadChildren: './pages/events/events.module#EventsPageModule'
+  },
+  {
+    path: 'mapmodal',
+    loadChildren: () => import('./pages/mapmodal/mapmodal.module').then( m => m.MapmodalPageModule)
   }
+
 ];
 
 @NgModule({

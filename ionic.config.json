@@ -1,5 +1,7 @@
 {
   "name": "NA-Italia",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
