@@ -34,7 +34,10 @@
             <ion-item text-wrap>
               <ion-ripple-effect></ion-ripple-effect>
               <ion-icon name="call" slot="start"></ion-icon>
-              <a href="tel:{{detail.helpline}}">{{detail.helpline}} </a>
+              <ion-button (click)='dialNum(detail.helpline)'>
+                <ion-ripple-effect></ion-ripple-effect>
+                {{detail.helpline}}
+              </ion-button>
             </ion-item>
           </div>
 
@@ -42,7 +45,10 @@
             <ion-item text-wrap>
               <ion-ripple-effect></ion-ripple-effect>
               <ion-icon name="mail" slot="start"></ion-icon>
-              <a href="mailto:{{detail.contact_email}}">{{detail.contact_email}} </a>
+              <ion-button (click)='openLink(detail.contact_email)'>
+                <ion-ripple-effect></ion-ripple-effect>
+                {{detail.contact_email}}
+              </ion-button>
             </ion-item>
           </div>
 

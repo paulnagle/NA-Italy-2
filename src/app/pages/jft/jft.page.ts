@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '../../service/loading.service';
 import { JftService } from '../../service/jft.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-jft',
@@ -18,7 +19,8 @@ export class JftPage implements OnInit {
   constructor(
     public loadingCtrl: LoadingService,
     public JftProvider: JftService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private storage: Storage
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,15 @@ export class JftPage implements OnInit {
       this.loadingText = value;
     });
     this.loadingCtrl.present(this.loadingText);
+    this.storage.get('language').then((value) => {
+      if (value === 'en') {
+        this.getEnglishJFT();
+      } else if ( value === 'it') {
+        this.getJFT();
+      } else {
+        this.getJFT();
+      }
+    });
     this.getJFT();
   }
 
@@ -34,7 +45,13 @@ export class JftPage implements OnInit {
       this.jft = data;
       this.loadingCtrl.dismiss();
     });
+  }
 
+  getEnglishJFT() {
+    this.JftProvider.getEnglishJFT().then((data) => {
+      this.jft = data;
+      this.loadingCtrl.dismiss();
+    });
   }
 
 }

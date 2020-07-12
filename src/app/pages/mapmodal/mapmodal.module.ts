@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { MapmodalPageRoutingModule } from './mapmodal-routing.module';
 import { MapmodalPage } from './mapmodal.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     MapmodalPageRoutingModule,
     TranslateModule
+  ],
+  providers: [
+    InAppBrowser
   ],
   entryComponents: [
     MapmodalPage

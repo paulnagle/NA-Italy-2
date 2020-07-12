@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { WordpressService } from '../../service/wordpress.service';
 import { LoadingService } from '../../service/loading.service';
 import { TranslateService } from '@ngx-translate/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-events',
@@ -12,11 +13,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class EventsPage implements OnInit {
   eventsData: any[];
   loadingText: string;
+  now;
 
   constructor(
     public loadingCtrl: LoadingService,
     public wp: WordpressService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private iab: InAppBrowser
   ) { }
 
   ngOnInit() {
@@ -24,6 +27,7 @@ export class EventsPage implements OnInit {
       this.loadingText = value;
     });
     this.loadingCtrl.present(this.loadingText);
+    this.now = Date.now() / 1000;
     this.wp.getEvents().then((data) => {
       const eventsObj = data.events;
       this.eventsData = Object.values(eventsObj);
@@ -34,6 +38,6 @@ export class EventsPage implements OnInit {
   }
 
   public openLink(url: string) {
-    window.open(url, '_system');
+    const browser = this.iab.create(url);
   }
 }

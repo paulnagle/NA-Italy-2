@@ -19,7 +19,6 @@ then
     ionic cordova platform add ios@latest
     # ionic cordova platform add android@latest
 
-    # ionic cordova plugin add cordova-plugin-inappbrowser
     ionic cordova plugin add cordova-plugin-inappbrowser
     ionic cordova plugin add cordova-plugin-splashscreen
     ionic cordova plugin add cordova-plugin-statusbar
@@ -30,7 +29,7 @@ then
     ionic cordova plugin add com-badrit-base64
 fi
 
-ionic cordova prepare ios 
+ionic cordova prepare ios --prod
 # ionic cordova prepare android --prod
 
 #ionic cordova resources ios

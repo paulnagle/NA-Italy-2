@@ -5,19 +5,22 @@ import { LoadingService } from '../../service/loading.service';
 import { firstBy } from 'thenby';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+  selector: 'app-virtual',
+  templateUrl: './virtual.page.html',
+  styleUrls: ['./virtual.page.scss'],
 })
-export class ListPage implements OnInit {
+export class VirtualPage implements OnInit {
 
   meetingList: any;
   meetingListArea: any;
   meetingListCity: any;
+  meetingListDay: any;
   meetingsListAreaGrouping: string;
   meetingsListCityGrouping: string;
+  meetingsListDayGrouping: string;
   shownGroup = null;
   loader = null;
   serviceGroupNames: any;
@@ -30,24 +33,28 @@ export class ListPage implements OnInit {
     private ServiceGroupsProvider: ServiceGroupsProviderService,
     private storage: Storage,
     public loadingCtrl: LoadingService,
-    private iab: InAppBrowser) {
+    private iab: InAppBrowser,
+    private translate: TranslateService) {
   }
 
   ngOnInit() {
-    // this.storage.get('timeDisplay')
-    //   .then(timeDisplay => {
-    //     if (timeDisplay) {
-    //       this.timeDisplay = timeDisplay;
-    //     } else {
-    //       this.timeDisplay = '24hr';
-    //     }
-    //   });
+    this.storage.get('timeDisplay')
+      .then(timeDisplay => {
+        if (timeDisplay) {
+          this.timeDisplay = timeDisplay;
+        } else {
+          this.timeDisplay = '24hr';
+        }
+      });
     console.log('In ngOnInit');
     this.HTMLGrouping = 'city';
-    this.loadingCtrl.present('Loading meetings...');
+    this.translate.get('FINDING_MTGS').subscribe(value => {
+      this.loadingCtrl.present(value);
+    });
     this.meetingsListAreaGrouping = 'service_body_bigint';
     this.meetingsListCityGrouping = 'location_sub_province';
-    this.getServiceGroupNames();
+    this.meetingsListDayGrouping = 'weekday_tinyint';
+    this.getAllMeetings();
   }
 
   public openMapsLink(destLatitude, destLongitude) {
@@ -63,53 +70,20 @@ export class ListPage implements OnInit {
     const browser = this.iab.create(telUrl);
   }
 
-  getServiceGroupNames() {
-    this.ServiceGroupsProvider.getAllServiceGroups().then((data) => {
-      this.serviceGroupData = data;
-      this.getAllMeetings();
-    });
-  }
-
-  getServiceNameFromID(id) {
-    for (const serviceGroup of this.serviceGroupData) {
-      if (serviceGroup.id === id){
-        return serviceGroup.name;
-      }
-    }
-    return 'unknown';
-  }
-
   getAllMeetings() {
     console.log('In getAllMeetings');
 
-    this.MeetingListProvider.getMeetingsSortedByDay().then((data) => {
+    this.MeetingListProvider.getVirtualMeetings().then((data) => {
       this.meetingList = data;
-
-      this.meetingList = this.meetingList.filter(meeting => meeting.service_body_bigint = this.getServiceNameFromID(meeting.service_body_bigint));
       this.meetingList = this.meetingList.filter(meeting => meeting.start_time = this.convertTo12Hr(meeting.start_time));
 
-      this.meetingListArea = this.meetingList.concat();
-      this.meetingListArea.sort((a, b) => a.service_body_bigint.localeCompare(b.service_body_bigint));
-      this.meetingListArea = this.groupMeetingList(this.meetingListArea, this.meetingsListAreaGrouping);
-      for (let i = 0; i < this.meetingListArea.length; i++) {
-        this.meetingListArea[i].sort(
-          firstBy('weekday_tinyint')
-          //  .thenBy('start_time')
-        );
-      }
+      this.meetingListDay = this.meetingList.concat();
+      this.meetingListDay = this.groupMeetingList(this.meetingListDay, this.meetingsListDayGrouping);
+      console.log(this.meetingListDay);
+      this.loadingCtrl.dismiss();
 
-      this.meetingListCity = this.meetingList.concat();
-      this.meetingListCity.sort((a, b) => a.location_sub_province.localeCompare(b.location_sub_province));
-      this.meetingListCity = this.groupMeetingList(this.meetingListCity, this.meetingsListCityGrouping);
-      for (let i = 0; i < this.meetingListCity.length; i++) {
-        this.meetingListCity[i].sort(
-          firstBy('weekday_tinyint')
-          //    .thenBy('start_time')
-        );
-      }
     });
 
-    this.loadingCtrl.dismiss();
 
   }
 
