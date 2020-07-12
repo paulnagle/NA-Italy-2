@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceGroupsProviderService } from '../../service/service-groups-provider.service';
 import { LoadingService } from '../../service/loading.service';
 import { TranslateService } from '@ngx-translate/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-contact',
@@ -15,17 +16,16 @@ export class ContactPage implements OnInit {
   serviceGroupData: any;
   loadingText;
 
-  sourceCodeLink = 'https://github.com/paulnagle/NA-Ireland-Ionic-4';
-  sourceBugs = 'https://github.com/paulnagle/NA-Ireland-Ionic-4/issues';
+  sourceCodeLink = 'https://github.com/paulnagle/NA-Italy-2';
+  sourceBugs = 'https://github.com/paulnagle/NA-Italy-2/issues';
   bmltLink = 'https://bmlt.app/';
   fbGroupLink = 'https://www.facebook.com/groups/149214049107349/';
-  naMeetingSearchAppIOS = 'https://apps.apple.com/us/app/na-meeting-search/id627643748';
-  naMeetingSearchAppANDROID = 'https://play.google.com/store/apps/details?id=org.na.naapp&hl=en';
 
   constructor(
     private ServiceGroupsProvider: ServiceGroupsProviderService,
     public loadingCtrl: LoadingService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private iab: InAppBrowser
   ) { }
 
   ngOnInit() {
@@ -45,7 +45,12 @@ export class ContactPage implements OnInit {
   }
 
   public openLink(url) {
-    window.open(url, '_system');
+    const browser = this.iab.create(url);
+  }
+
+  public dialNum(url) {
+    const telUrl = 'tel:' + url;
+    const browser = this.iab.create(telUrl, '_system');
   }
 
 }

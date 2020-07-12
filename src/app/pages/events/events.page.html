@@ -10,11 +10,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let event of eventsData">
+  <div *ngFor="let event of eventsData">
+  <ion-card *ngIf="event.end > now">
 
     <ion-card-header>
-      <ion-card-title>{{ event.name }}</ion-card-title>
-      <ion-card-subtitle>{{ event.event_subtitle}}</ion-card-subtitle>
+      <ion-card-title>{{ event.name | htmlenc}}</ion-card-title>
+      <ion-card-subtitle>{{ event.event_subtitle | htmlenc }}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
@@ -22,5 +23,5 @@
     </ion-card-content>
 
   </ion-card>
-
+</div>
 </ion-content>

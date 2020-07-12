@@ -70,10 +70,10 @@
               <div *ngIf="group2.location_code_1">{{group2.location_code_1}}<br></div>
               <div *ngIf="group2.location_info">{{group2.location_info}}<br></div>
               <div *ngIf="group2.comments">{{group2.comments}}<br></div>
-              <div *ngIf="group2.contact_phone_1">{{group2.contact_phone_1  }}<br></div>
-              <div *ngIf="group2.contact_email_1">{{group2.contact_email_1  }}<br></div>
-              <div *ngIf="group2.train_lines">{{'TRAIN' | translate}} : {{group2.train_lines  }}<br></div>
-              <div *ngIf="group2.bus_lines">{{'BUS' | translate}} : {{group2.bus_lines  }}<br></div>
+              <div *ngIf="group2.contact_phone_1">{{group2.contact_phone_1 | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.contact_email_1">{{group2.contact_email_1 | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.train_lines">{{'TRAIN' | translate}} : {{group2.train_lines | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.bus_lines">{{'BUS' | translate}} : {{group2.bus_lines | tidyDelimiter }}<br></div>
               <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats  }}</i><br></div>
               <br>
 
@@ -120,25 +120,25 @@
               <ion-card-subtitle no-padding>
                 <div ngSwitch="{{ group2.weekday_tinyint }}">
                   <div *ngSwitchCase="'1'" [ngClass]="'one'">
-                    <ion-badge color="sunday"><b>Sunday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="sunday"><b>{{'SUNDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'2'" [ngClass]="'one'">
-                    <ion-badge color="monday"><b>Monday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="monday"><b>{{'MONDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'3'" [ngClass]="'one'">
-                    <ion-badge color="tuesday"><b>Tuesday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="tuesday"><b>{{'TUESDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'4'" [ngClass]="'one'">
-                    <ion-badge color="wednesday"><b>Wednesday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="wednesday"><b>{{'WEDNESDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'5'" [ngClass]="'one'">
-                    <ion-badge color="thursday"><b>Thursday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="thursday"><b>{{'THURSDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'6'" [ngClass]="'one'">
-                    <ion-badge color="friday"><b>Friday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="friday"><b>{{'FRIDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'7'" [ngClass]="'one'">
-                    <ion-badge color="saturday"><b>Saturday {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="saturday"><b>{{'SATURDAY' | translate}} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
                   </div>
                   <div *ngSwitchDefault>Nothing Found.</div>
                 </div>
@@ -155,11 +155,11 @@
               <div *ngIf="group2.location_code_1">{{group2.location_code_1}}<br></div>
               <div *ngIf="group2.location_info">{{group2.location_info}}<br></div>
               <div *ngIf="group2.comments">{{group2.comments}}<br></div>
-              <div *ngIf="group2.contact_phone_1">{{group2.contact_phone_1  }}<br></div>
-              <div *ngIf="group2.contact_email_1">{{group2.contact_email_1  }}<br></div>
-              <div *ngIf="group2.train_lines">{{'TRAIN' | translate}} : {{group2.train_lines  }}<br></div>
-              <div *ngIf="group2.bus_lines">{{'BUS' | translate}} : {{group2.bus_lines  }}<br></div>
-              <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats  }}</i><br></div>
+              <div *ngIf="group2.contact_phone_1">{{group2.contact_phone_1 | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.contact_email_1">{{group2.contact_email_1 | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.train_lines">{{'TRAIN' | translate}} : {{group2.train_lines | tidyDelimiter }}<br></div>
+              <div *ngIf="group2.bus_lines">{{'BUS' | translate}} : {{group2.bus_lines  | tidyDelimiter}}<br></div>
+              <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats | tidyDelimiter }}</i><br></div>
               <br>
 
               <div *ngIf="!group2.virtual_meeting_link">

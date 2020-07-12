@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'mapmodal',
     loadChildren: () => import('./pages/mapmodal/mapmodal.module').then( m => m.MapmodalPageModule)
+  },
+  {
+    path: 'virtual',
+    loadChildren: () => import('./pages/virtual/virtual.module').then( m => m.VirtualPageModule)
   }
 
 ];

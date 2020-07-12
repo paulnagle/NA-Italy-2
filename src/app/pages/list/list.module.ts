@@ -8,6 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { MeetingListProviderService } from 'src/app/service/meeting-list-provider.service';
 import { ServiceGroupsProviderService } from 'src/app/service/service-groups-provider.service';
+import { AppPipesModule } from '../../pipes/pipes.module';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   imports: [
@@ -15,13 +17,15 @@ import { ServiceGroupsProviderService } from 'src/app/service/service-groups-pro
     FormsModule,
     IonicModule,
     ListPageRoutingModule,
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    AppPipesModule
   ],
   declarations: [ListPage],
   providers: [
     HTTP,
     MeetingListProviderService,
-    ServiceGroupsProviderService
+    ServiceGroupsProviderService,
+    InAppBrowser
   ]
 })
 export class ListPageModule {}

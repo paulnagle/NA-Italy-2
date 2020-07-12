@@ -20,8 +20,11 @@ export class JftService {
     elem.innerHTML = data.data;
     const tmp = elem.getElementsByClassName("entry-content clearfix");
     const jft = tmp[0].innerHTML;
-
-
     return jft;
+  }
+
+  async getEnglishJFT() {
+    const data = await this.http.get(this.JftUrlEnglish, {}, {});
+    return data.data;
   }
 }

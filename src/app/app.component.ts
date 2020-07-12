@@ -29,6 +29,11 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'VIRTMEETINGLIST',
+      url: '/virtual',
+      icon: 'cloud'
+    },
+    {
       title: 'GOOGLE_MAPS',
       url: '/map',
       icon: 'map'
@@ -39,7 +44,7 @@ export class AppComponent {
       icon: 'book'
     },
     {
-      title: 'CALC',
+      title: 'DATETIME',
       url: '/calc',
       icon: 'stopwatch'
     },
@@ -52,7 +57,7 @@ export class AppComponent {
     {
       title: 'CONTACT',
       url: '/contact',
-      icon: 'contact'
+      icon: 'person-circle-outline'
     }
   ];
 

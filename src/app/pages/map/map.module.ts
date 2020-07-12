@@ -8,6 +8,7 @@ import { MapPage } from './map.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { MapmodalPage } from '../mapmodal/mapmodal.page';
 import { HTTP } from '@ionic-native/http/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { HTTP } from '@ionic-native/http/ngx';
   ],
   providers: [
     Base64,
-    HTTP
+    HTTP,
+    InAppBrowser
   ]
 })
 export class MapPageModule {}

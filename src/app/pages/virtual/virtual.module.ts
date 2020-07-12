@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
-import { ContactPageRoutingModule } from './contact-routing.module';
-import { ContactPage } from './contact.page';
-import { TranslateModule } from '@ngx-translate/core';
+
+import { VirtualPageRoutingModule } from './virtual-routing.module';
+
+import { VirtualPage } from './virtual.page';
+import { MeetingListProviderService } from 'src/app/service/meeting-list-provider.service';
 import { HTTP } from '@ionic-native/http/ngx';
-import { ServiceGroupsProviderService } from 'src/app/service/service-groups-provider.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
@@ -14,14 +17,14 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     CommonModule,
     FormsModule,
     IonicModule,
-    ContactPageRoutingModule,
+    VirtualPageRoutingModule,
     TranslateModule.forChild()
   ],
-  declarations: [ContactPage],
+  declarations: [VirtualPage],
   providers: [
     HTTP,
-    ServiceGroupsProviderService,
+    MeetingListProviderService,
     InAppBrowser
   ]
 })
-export class ContactPageModule {}
+export class VirtualPageModule {}

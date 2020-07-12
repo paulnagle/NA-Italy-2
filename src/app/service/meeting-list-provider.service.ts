@@ -10,6 +10,7 @@ export class MeetingListProviderService {
   meetings: any;
   italyBMLT = environment.italyBMLT;
   tomatoBMLT = environment.tomatoBMLT;
+  virtualItalyBMLT = environment.virtualItalyBMLT;
 
   constructor(public http: HTTP) {
     console.log('Hello MeetingListProvider Provider');
@@ -17,6 +18,12 @@ export class MeetingListProviderService {
 
   getApiUrlMap: string = this.italyBMLT + '?switcher=GetSearchResults&sort_keys=longitude,latitude,weekday_tinyint,start_time';
   getApiUrlDay: string = this.italyBMLT + '?switcher=GetSearchResults&sort_keys=weekday_tinyint,start_time';
+  getApiUrlVirt: string = this.virtualItalyBMLT + '?switcher=GetSearchResults&sort_keys=weekday_tinyint,start_time';
+
+  async getVirtualMeetings() {
+    const data = await this.http.get(this.getApiUrlVirt, {}, {});
+    return JSON.parse(data.data);
+  }
 
   async getMeetings() {
     const data = await this.http.get(this.getApiUrlMap, {}, {});

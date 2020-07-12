@@ -7,6 +7,7 @@ import { JftPage } from './jft.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { HTTP } from '@ionic-native/http/ngx';
 import { JftService } from 'src/app/service/jft.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { JftService } from 'src/app/service/jft.service';
     FormsModule,
     IonicModule,
     JftPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     HTTP,
