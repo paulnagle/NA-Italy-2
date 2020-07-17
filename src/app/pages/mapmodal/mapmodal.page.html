@@ -19,25 +19,25 @@
         <ion-card-subtitle no-padding>
           <div ngSwitch="{{ meeting.weekday_tinyint }}">
             <div *ngSwitchCase="'1'" [ngClass]="'one'">
-              <ion-badge color="sunday"><b>{{'SUNDAY' | translate}}{{ meeting.start_time_set  }} </b></ion-badge>
+              <ion-badge color="sunday"><b>{{'SUNDAY' | translate}}{{ meeting.start_time  | slice:0:5 }} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'2'" [ngClass]="'one'">
-              <ion-badge color="monday"><b>{{'MONDAY' | translate}} {{ meeting.start_time_set }} </b></ion-badge>
+              <ion-badge color="monday"><b>{{'MONDAY' | translate}} {{ meeting.start_time  | slice:0:5}} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'3'" [ngClass]="'one'">
-              <ion-badge color="tuesday"><b>{{'TUESDAY' | translate}} {{ meeting.start_time_set }} </b></ion-badge>
+              <ion-badge color="tuesday"><b>{{'TUESDAY' | translate}} {{ meeting.start_time  | slice:0:5}} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'4'" [ngClass]="'one'">
-              <ion-badge color="wednesday"><b>{{'WEDNESDAY' | translate}} {{ meeting.start_time_set }} </b></ion-badge>
+              <ion-badge color="wednesday"><b>{{'WEDNESDAY' | translate}} {{ meeting.start_time  | slice:0:5}} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'5'" [ngClass]="'one'">
-              <ion-badge color="thursday"><b>{{'THURSDAY' | translate}} {{ meeting.start_time_set }} </b></ion-badge>
+              <ion-badge color="thursday"><b>{{'THURSDAY' | translate}} {{ meeting.start_time  | slice:0:5}} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'6'" [ngClass]="'one'">
-              <ion-badge color="friday"><b>{{'FRIDAY' | translate}} {{ meeting.start_time_set }} </b></ion-badge>
+              <ion-badge color="friday"><b>{{'FRIDAY' | translate}} {{ meeting.start_time  | slice:0:5}} </b></ion-badge>
             </div>
             <div *ngSwitchCase="'7'" [ngClass]="'one'">
-              <ion-badge color="saturday"><b>{{'SATURDAY' | translate}} {{ meeting.start_time_set  }} </b></ion-badge>
+              <ion-badge color="saturday"><b>{{'SATURDAY' | translate}} {{ meeting.start_time  | slice:0:5 }} </b></ion-badge>
             </div>
             <div *ngSwitchDefault>Nothing Found.</div>
           </div>
@@ -48,13 +48,14 @@
         <div *ngIf="meeting.location_text">{{meeting.location_text}}<br></div>
         <div *ngIf="meeting.location_street">{{meeting.location_street}}<br></div>
         <div *ngIf="meeting.location_city_subsection">{{meeting.location_city_subsection}}<br></div>
-        <div *ngIf="meeting.location_neighbourhood">{{meeting.location_neighbourhood}}<br></div>
+        <div *ngIf="meeting.location_neighborhood">{{meeting.location_neighborhood}}<br></div>
         <div *ngIf="meeting.location_municipality">{{meeting.location_municipality}}<br></div>
         <div *ngIf="meeting.location_sub_province">{{meeting.location_sub_province}}<br></div>
         <div *ngIf="meeting.location_province">{{meeting.location_province}}<br></div>
         <div *ngIf="meeting.location_code_1">{{meeting.location_code_1}}<br></div>
         <div *ngIf="meeting.location_info">{{meeting.location_info}}<br></div>
         <div *ngIf="meeting.comments">{{meeting.comments}}<br></div>
+        <div *ngIf="meeting.virtual_meeting_additional_info">{{meeting.virtual_meeting_additional_info}}<br></div>
         <div *ngIf="meeting.contact_phone_1">{{meeting.contact_phone_1  }}<br></div>
         <div *ngIf="meeting.contact_email_1">{{meeting.contact_email_1  }}<br></div>
         <div *ngIf="meeting.train_lines">{{'TRAIN' | translate}} : {{meeting.train_lines  }}<br></div>

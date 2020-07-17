@@ -26,14 +26,7 @@ export class MapmodalPage implements OnInit {
     private modalController: ModalController,
     private iab: InAppBrowser) {
     console.log('mapModal constructor');
-    this.storage.get('timeDisplay')
-      .then(timeDisplay => {
-        if (timeDisplay) {
-          this.timeDisplay = timeDisplay;
-        } else {
-          this.timeDisplay = '24hr';
-        }
-      });
+
     this.meetingList = this.navParams.data.data;
   }
 

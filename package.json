@@ -32,10 +32,10 @@
     "@ngx-translate/http-loader": "^5.0.0",
     "@types/googlemaps": "^3.39.8",
     "com-badrit-base64": "^0.2.0",
-    "cordova-android": "^8.1.0",
+    "cordova-android": "^9.0.0",
     "cordova-androidx-build": "^1.0.3",
     "cordova-ios": "^6.1.0",
-    "cordova-plugin-advanced-http": "^2.5.1",
+    "cordova-plugin-advanced-http": "^3.0.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps",
     "cordova-plugin-googlemaps-sdk": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps-sdk.git",
@@ -90,9 +90,7 @@
         "LOCATION_WHEN_IN_USE_DESCRIPTION": "This app wants to get your location while this app runs only.",
         "LOCATION_ALWAYS_USAGE_DESCRIPTION": "This app wants to get your location always, even this app runs in background."
       },
-      "cordova-plugin-advanced-http": {
-        "OKHTTP_VERSION": "3.10.0"
-      },
+      "cordova-plugin-advanced-http": {},
       "com-badrit-base64": {}
     },
     "platforms": [

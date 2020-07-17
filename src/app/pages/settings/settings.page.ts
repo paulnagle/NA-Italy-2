@@ -10,8 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class SettingsPage implements OnInit {
 
   language: string;
-  timeDisplay: string;
-  distanceUnit: string;
 
   constructor(
     private storage: Storage,
@@ -29,38 +27,12 @@ export class SettingsPage implements OnInit {
         }
       });
 
-    this.storage.get('timeDisplay')
-      .then(timeDisplay => {
-        if (timeDisplay) {
-          this.timeDisplay = timeDisplay;
-        } else {
-          this.timeDisplay = '24hr';
-        }
-      });
-
-    this.storage.get('distanceUnit')
-      .then(distanceUnit => {
-        if (distanceUnit) {
-          this.distanceUnit = distanceUnit;
-        } else {
-          this.distanceUnit = 'kms';
-        }
-      });
-
   }
 
   selectLanguage() {
     this.storage.set('language', this.language);
     this.translate.setDefaultLang(this.language);
     this.translate.use(this.language);
-  }
-
-  selectTimeDisplay() {
-    this.storage.set('timeDisplay', this.timeDisplay);
-  }
-
-  selectDistanceUnit() {
-    this.storage.set('distanceUnit', this.distanceUnit);
   }
 
 }

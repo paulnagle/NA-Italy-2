@@ -86,7 +86,6 @@ export class ListPage implements OnInit {
       this.meetingList = data;
 
       this.meetingList = this.meetingList.filter(meeting => meeting.service_body_bigint = this.getServiceNameFromID(meeting.service_body_bigint));
-      this.meetingList = this.meetingList.filter(meeting => meeting.start_time = this.convertTo12Hr(meeting.start_time));
 
       this.meetingListArea = this.meetingList.concat();
       this.meetingListArea.sort((a, b) => a.service_body_bigint.localeCompare(b.service_body_bigint));
@@ -145,18 +144,6 @@ export class ListPage implements OnInit {
 
   isGroupShown(group) {
     return this.shownGroup === group;
-  }
-
-  public convertTo12Hr(timeString) {
-    if (this.timeDisplay === '12hr') {
-      const H = +timeString.substr(0, 2);
-      const h = H % 12 || 12;
-      const ampm = (H < 12 || H === 24) ? ' AM' : ' PM';
-      timeString = h + timeString.substr(2, 3) + ampm;
-      return timeString;
-    } else {
-      return timeString.slice(0, -3);
-    }
   }
 
 }

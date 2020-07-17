@@ -40,4 +40,8 @@ export class EventsPage implements OnInit {
   public openLink(url: string) {
     const browser = this.iab.create(url);
   }
+
+  public openMapsLink(destLatitude: string, destLongitude: string) {
+    const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude );
+  }
 }

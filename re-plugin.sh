@@ -23,14 +23,13 @@ then
     ionic cordova plugin add cordova-plugin-splashscreen
     ionic cordova plugin add cordova-plugin-statusbar
     ionic cordova plugin add cordova-plugin-whitelist
-    # ionic cordova plugin add cordova-plugin-googlemaps
     ionic cordova plugin add https://github.com/mapsplugin/cordova-plugin-googlemaps.git#multiple_maps  --variable API_KEY_FOR_ANDROID="AIzaSyA-BELBbbsJnG41sViw4Ve0A1CVxO757Xc" --variable API_KEY_FOR_IOS="AIzaSyA-BELBbbsJnG41sViw4Ve0A1CVxO757Xc"
     ionic cordova plugin add cordova-plugin-advanced-http
     ionic cordova plugin add com-badrit-base64
 fi
 
 ionic cordova prepare ios --prod
-# ionic cordova prepare android --prod
+# ionic cordova prepare android --prod --gradleArg=-PcdvMinSdkVersion=22
 
 #ionic cordova resources ios
 #ionic cordova resources android
