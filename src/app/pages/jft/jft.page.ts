@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage';
 export class JftPage implements OnInit {
 
   jft;
+  englishjft;
   loader = null;
   headers = null;
   loadingText;
@@ -37,7 +38,6 @@ export class JftPage implements OnInit {
         this.getJFT();
       }
     });
-    this.getJFT();
   }
 
   getJFT() {
@@ -49,7 +49,7 @@ export class JftPage implements OnInit {
 
   getEnglishJFT() {
     this.JftProvider.getEnglishJFT().then((data) => {
-      this.jft = data;
+      this.englishjft = data;
       this.loadingCtrl.dismiss();
     });
   }

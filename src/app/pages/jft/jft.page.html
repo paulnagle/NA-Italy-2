@@ -9,6 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div [innerHtml]="jft"></div>
+<ion-content>
+  <div *ngIf="englishjft" [innerHtml]="englishjft"></div>
+
+  <div *ngIf="jft">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{jft[0].title}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div [innerHtml]="jft[0].content"></div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>

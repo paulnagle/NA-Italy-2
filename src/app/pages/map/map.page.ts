@@ -164,15 +164,6 @@ export class MapPage implements OnInit {
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
 
-    this.storage.get('timeDisplay')
-      .then(timeDisplay => {
-        if (timeDisplay) {
-          this.timeDisplay = timeDisplay;
-        } else {
-          this.timeDisplay = '24hr';
-        }
-      });
-
     await this.platform.ready();
     await this.loadMap();
   }
@@ -568,26 +559,10 @@ export class MapPage implements OnInit {
     }
   }
 
-
-  public convertTo12Hr(timeString: string) {
-    if (this.timeDisplay === '12hr') {
-      const H = +timeString.substr(0, 2);
-      const h = H % 12 || 12;
-      const ampm = (H < 12 || H === 24) ? ' AM' : ' PM';
-      timeString = h + timeString.substr(2, 3) + ampm;
-      return timeString;
-    } else {
-      return timeString.slice(0, -3);
-    }
-  }
-
-
   openMeetingModal(meetingID) {
     console.log('openMeetingModal()');
     this.MeetingListProvider.getSingleMeetingByID(meetingID).then((meeting) => {
       this.meeting = meeting;
-      this.meeting.filter((i: { start_time_set: any; start_time: any; }) => i.start_time_set = this.convertTo12Hr(i.start_time));
-
       this.openModal(this.meeting);
     });
   }

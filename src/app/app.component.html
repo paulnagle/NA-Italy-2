@@ -4,8 +4,13 @@
 
       <ion-content class="menu-css">
         <ion-list>
+          <ion-toolbar color="primary">
+            <ion-title>{{ 'MENU' | translate }}</ion-title>
+          </ion-toolbar>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+            <ion-header>
 
+            </ion-header>
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>{{p.title | translate}}</ion-label>

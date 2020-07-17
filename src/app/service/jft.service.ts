@@ -12,15 +12,11 @@ export class JftService {
   ) { }
 
   JftUrlEnglish = 'https://www.jftna.org/jft/';
-  JftUrlItalian = 'https://na-italia.org/solo-per-oggi/';
+  JftUrlItalian = 'https://na-italia.org/get-jft';
 
   async getJFT() {
     const data = await this.http.get(this.JftUrlItalian, {}, {});
-    const elem = document.createElement('div');
-    elem.innerHTML = data.data;
-    const tmp = elem.getElementsByClassName("entry-content clearfix");
-    const jft = tmp[0].innerHTML;
-    return jft;
+    return JSON.parse(data.data);
   }
 
   async getEnglishJFT() {
