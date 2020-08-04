@@ -31,10 +31,8 @@ export class EventsPage implements OnInit {
     this.wp.getEvents().then((data) => {
       const eventsObj = data.events;
       this.eventsData = Object.values(eventsObj);
-      console.log(this.eventsData);
       this.loadingCtrl.dismiss();
     });
-    console.log(this.eventsData);
   }
 
   public openLink(url: string) {

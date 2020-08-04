@@ -4,7 +4,7 @@
     "ABOUT": "Informazioni su questa app",
     "POSTS": "Eventi & Convention",
     "MEETINGLIST": "Ricerca riunione/i",
-    "VIRTMEETINGLIST": "Virtual Meetings",
+    "VIRTMEETINGLIST": "Riunioni Online",
     "MEETINGDETAILS": "Dettagli riunione",
     "TAGS": "Tag",
     "CATEGORY": "Categoria",
@@ -91,7 +91,7 @@
 
     "EVENTS.MOREDETAILS": "ulteriori dettagli…",
 
-    "GROUP.COUNTY": "Circoscrizione",
+    "GROUP.COUNTY": "Provincia",
     "GROUP.AREA": "Area",
     "GROUP.GROUPBY": "Visualizza per ",
 
