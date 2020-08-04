@@ -78,8 +78,8 @@
               <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats  }}</i><br></div>
               <br>
 
-              <div *ngIf="!group2.virtual_meeting_link">
-                <ion-button expand="block"  (click)="openMapsLink(group2.latitude , group2.longitude)">
+              <div *ngIf="!group2.virtual_meeting_link || group2.isHybrid === 'HYBRID'">
+                <ion-button expand="block" (click)="openMapsLink(group2.latitude , group2.longitude)">
                   <ion-ripple-effect></ion-ripple-effect>
                   <ion-icon name="map"> </ion-icon>&nbsp;{{'MAP' | translate}}
                 </ion-button>
@@ -164,7 +164,7 @@
               <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats | tidyDelimiter }}</i><br></div>
               <br>
 
-              <div *ngIf="!group2.virtual_meeting_link">
+              <div *ngIf="!group2.virtual_meeting_link || group2.isHybrid === 'HYBRID'">
                 <ion-button expand="block" (click)="openMapsLink(group2.latitude , group2.longitude)">
                   <ion-ripple-effect></ion-ripple-effect>
                   <ion-icon name="map"> </ion-icon>&nbsp;{{'MAP' | translate}}

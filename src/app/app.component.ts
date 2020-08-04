@@ -29,14 +29,14 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'VIRTMEETINGLIST',
-      url: '/virtual',
-      icon: 'cloud'
-    },
-    {
       title: 'GOOGLE_MAPS',
       url: '/map',
       icon: 'map'
+    },
+    {
+      title: 'VIRTMEETINGLIST',
+      url: '/virtual',
+      icon: 'cloud'
     },
     {
       title: 'JUSTFORTODAY',

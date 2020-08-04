@@ -3,8 +3,8 @@ if [ -z "$1" ]
 then
     rm -rf www
 
-    ionic cordova platform rm ios
-    # ionic cordova platform rm android
+    # ionic cordova platform rm ios
+    ionic cordova platform rm android
 
     ionic cordova plugin rm cordova-plugin-inappbrowser
     ionic cordova plugin rm cordova-plugin-splashscreen
@@ -16,8 +16,8 @@ then
 
     rm -rf platform/*
 
-    ionic cordova platform add ios@latest
-    # ionic cordova platform add android@latest
+    # ionic cordova platform add ios@latest
+    ionic cordova platform add android@latest
 
     ionic cordova plugin add cordova-plugin-inappbrowser
     ionic cordova plugin add cordova-plugin-splashscreen
@@ -28,10 +28,10 @@ then
     ionic cordova plugin add com-badrit-base64
 fi
 
-ionic cordova prepare ios --prod
-# ionic cordova prepare android --prod --gradleArg=-PcdvMinSdkVersion=22
+# ionic cordova prepare ios --prod
+ionic cordova prepare android --prod 
 
 #ionic cordova resources ios
-#ionic cordova resources android
+# ionic cordova resources android
 
 #ionic build --prod  --minifyjs   --minifycss  --optimizejs

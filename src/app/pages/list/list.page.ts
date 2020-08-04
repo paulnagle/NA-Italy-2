@@ -5,6 +5,7 @@ import { LoadingService } from '../../service/loading.service';
 import { firstBy } from 'thenby';
 import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list',
@@ -29,22 +30,19 @@ export class ListPage implements OnInit {
     private MeetingListProvider: MeetingListProviderService,
     private ServiceGroupsProvider: ServiceGroupsProviderService,
     private storage: Storage,
+    private translate: TranslateService,
     public loadingCtrl: LoadingService,
     private iab: InAppBrowser) {
   }
 
   ngOnInit() {
-    // this.storage.get('timeDisplay')
-    //   .then(timeDisplay => {
-    //     if (timeDisplay) {
-    //       this.timeDisplay = timeDisplay;
-    //     } else {
-    //       this.timeDisplay = '24hr';
-    //     }
-    //   });
     console.log('In ngOnInit');
+
+    this.translate.get('FINDING_MTGS').subscribe(value => {
+      this.presentLoader(value);
+    });
+
     this.HTMLGrouping = 'city';
-    this.loadingCtrl.present('Loading meetings...');
     this.meetingsListAreaGrouping = 'service_body_bigint';
     this.meetingsListCityGrouping = 'location_sub_province';
     this.getServiceGroupNames();
@@ -86,6 +84,7 @@ export class ListPage implements OnInit {
       this.meetingList = data;
 
       this.meetingList = this.meetingList.filter(meeting => meeting.service_body_bigint = this.getServiceNameFromID(meeting.service_body_bigint));
+      this.meetingList = this.meetingList.filter(meeting => meeting.isHybrid = this.isHybrid(meeting));
 
       this.meetingListArea = this.meetingList.concat();
       this.meetingListArea.sort((a, b) => a.service_body_bigint.localeCompare(b.service_body_bigint));
@@ -108,7 +107,7 @@ export class ListPage implements OnInit {
       }
     });
 
-    this.loadingCtrl.dismiss();
+    this.dismissLoader();;
 
   }
 
@@ -144,6 +143,30 @@ export class ListPage implements OnInit {
 
   isGroupShown(group) {
     return this.shownGroup === group;
+  }
+
+  isHybrid(meeting) {
+    console.log('formats: ', meeting.formats);
+    if (meeting.formats.match(/IB/i)) {
+      return 'HYBRID';
+    } else {
+      return 'NOT-HYBRID';
+    }
+  }
+
+  presentLoader(loaderText: any) {
+    if (!this.loader) {
+      this.loader = this.loadingCtrl.present(loaderText);
+    }
+  }
+
+
+  dismissLoader() {
+    if (this.loader) {
+      console.log('Dismissing loader..');
+      this.loader = this.loadingCtrl.dismiss();
+      this.loader = null;
+    }
   }
 
 }

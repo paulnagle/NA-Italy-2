@@ -122,15 +122,13 @@ export class VirtualPage implements OnInit {
   }
 
   public convertTo12Hr(timeString) {
-    if (this.timeDisplay === '12hr') {
-      const H = +timeString.substr(0, 2);
-      const h = H % 12 || 12;
-      const ampm = (H < 12 || H === 24) ? ' AM' : ' PM';
-      timeString = h + timeString.substr(2, 3) + ampm;
-      return timeString;
-    } else {
-      return timeString.slice(0, -3);
-    }
+
+    let H = +timeString.substr(0, 2);
+    H = H + 2;
+
+    timeString = H + timeString.substr(2, 3) ;
+    return timeString;
+
   }
 
 }
