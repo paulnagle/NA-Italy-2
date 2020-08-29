@@ -48,7 +48,6 @@ export class CalcPage implements OnInit {
       const oneYear = oneDay * 365;
 
       const cleanDateInMilliseconds = Date.parse(this.myDate);
-      console.log('Setting cleanDate in storage to ', cleanDateInMilliseconds);
       this.storage.set('cleanDate', cleanDateInMilliseconds);
 
       this.cleanTimeDate = new Date(cleanDateInMilliseconds);

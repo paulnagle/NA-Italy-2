@@ -42,6 +42,14 @@
             <div *ngSwitchDefault>Nothing Found.</div>
           </div>
         </ion-card-subtitle>
+
+        <div *ngIf="meeting.isTempClosed === 'TEMPCLOSED'">
+          <ion-button  color="danger">
+            <ion-ripple-effect></ion-ripple-effect>
+            {{'TEMP_CLOSED' | translate}}
+          </ion-button>
+        </div>
+
       </ion-card-header>
 
       <ion-card-content>
@@ -62,8 +70,7 @@
         <div *ngIf="meeting.bus_lines">{{'BUS' | translate}} : {{meeting.bus_lines  }}<br></div>
         <div *ngIf="meeting.formats"><i>{{'FORMATS' | translate}} : {{meeting.formats  }}</i><br></div>
 
-
-        <div *ngIf="!meeting.virtual_meeting_link">
+        <div *ngIf="!meeting.virtual_meeting_link || meeting.isHybrid === 'HYBRID'">
           <ion-button expand="block" (click)="openMapsLink(meeting.latitude , meeting.longitude)">
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon name="map"> </ion-icon>&nbsp;{{'MAP' | translate}}
@@ -71,7 +78,7 @@
         </div>
 
         <div *ngIf="meeting.virtual_meeting_link">
-          <ion-button expand="block" (click)="openLink(meeting.virtual_meeting_link)">
+          <ion-button expand="block" (click)="openLink(meeting.virtual_meeting_link)" class="ion-text-wrap">
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon name="cloud"> </ion-icon>&nbsp;{{'VIRTUAL_LINK' | translate }}
           </ion-button>

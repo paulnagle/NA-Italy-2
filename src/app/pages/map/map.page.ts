@@ -54,8 +54,8 @@ export class MapPage implements OnInit {
   meetingList: any = [];
   loader = null;
   zoom = 8;
-  mapLatitude: any = 34.2359855;
-  mapLongitude: any = -118.5656689;
+  mapLatitude: any = 41.9028;
+  mapLongitude: any = 12.4964;
 
   eagerMapLat: number;
   eagerMapLng: number;
@@ -117,8 +117,6 @@ export class MapPage implements OnInit {
 
 
   async ngOnInit() {
-    console.log('ngOnInit');
-
     this.filePathMarkerRed = './assets/markers/MarkerRed.png';
     this.base64.encodeFile(this.filePathMarkerRed).then((base64imageR: string) => {
       this.Base64MarkerRed = base64imageR;
@@ -371,12 +369,30 @@ export class MapPage implements OnInit {
         this.meetingList = data;
         this.meetingList = this.meetingList.filter((meeting: { latitude }) => meeting.latitude = parseFloat(meeting.latitude));
         this.meetingList = this.meetingList.filter((meeting: { longitude }) => meeting.longitude = parseFloat(meeting.longitude));
+        this.meetingList = this.meetingList.filter(meeting => meeting.isTempClosed = this.isTempClosed(meeting));
+        this.meetingList = this.meetingList.filter(meeting => meeting.isHybrid = this.isHybrid(meeting));
+
       }
       this.populateMarkers();
       this.addCluster();
     });
   }
 
+  isHybrid(meeting) {
+    if (meeting.formats.match(/IB/i)) {
+      return 'HYBRID';
+    } else {
+      return 'NOT-HYBRID';
+    }
+  }
+
+  isTempClosed(meeting) {
+    if (meeting.formats.match(/TC/i)) {
+      return 'TEMPCLOSED';
+    } else {
+      return 'NOT-TEMPCLOSED';
+    }
+  }
 
   populateMarkers() {
 
@@ -553,14 +569,12 @@ export class MapPage implements OnInit {
 
   dismissLoader() {
     if (this.loader) {
-      console.log('Dismissing loader..');
       this.loader = this.loadingCtrl.dismiss();
       this.loader = null;
     }
   }
 
   openMeetingModal(meetingID) {
-    console.log('openMeetingModal()');
     this.MeetingListProvider.getSingleMeetingByID(meetingID).then((meeting) => {
       this.meeting = meeting;
       this.openModal(this.meeting);

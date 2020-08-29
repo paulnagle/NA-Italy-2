@@ -11,23 +11,30 @@
 
 <ion-content>
   <div *ngFor="let event of eventsData">
-  <ion-card *ngIf="event.end > now">
+  <ion-card>
 
     <ion-card-header>
-      <div *ngIf="event.image_url">
-        <ion-img [src]="event.image_url" class="ion-no-padding"></ion-img>
-      </div>
-      <ion-card-title>&nbsp;{{ event.name | htmlenc}}</ion-card-title>
-      <ion-card-subtitle>&nbsp;{{ event.event_subtitle | htmlenc }}</ion-card-subtitle>
+      <div *ngIf="event.name"><ion-card-title>{{ event.name | htmlenc}}</ion-card-title></div>
+      <div *ngIf="event.event_subtitle"><ion-card-subtitle>{{ event.event_subtitle | htmlenc }}</ion-card-subtitle></div>
     </ion-card-header>
 
     <ion-card-content>
 
-      <div *ngIf="event.location_name">
+      <div *ngIf="event.image_url">
+        <ion-img [src]="event.image_url" class="ion-no-padding"></ion-img>
+      </div>
+
+      <div *ngIf="event.details">
+        <br>
+        <div [innerHTML]="event.details | htmlenc"></div>
+        <br>
+      </div>
+
+      <div *ngIf="event.location_name | htmlenc">
         <br>
         <h4>{{ event.location_name }}</h4>
       </div>
-      <div *ngIf="event.location_address">
+      <div *ngIf="event.location_address | htmlenc">
         <h4>{{ event.location_address }}</h4>
       </div>
 
@@ -41,9 +48,6 @@
         </div>
       </div>
 
-      <br>
-      <div [innerHTML]="event.details"></div>
-      <br>
     </ion-card-content>
 
   </ion-card>

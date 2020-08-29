@@ -13,7 +13,7 @@ export class MeetingListProviderService {
   virtualItalyBMLT = environment.virtualItalyBMLT;
 
   constructor(public http: HTTP) {
-    console.log('Hello MeetingListProvider Provider');
+
   }
 
   getApiUrlMap: string = this.italyBMLT + '?switcher=GetSearchResults&sort_keys=longitude,latitude,weekday_tinyint,start_time';

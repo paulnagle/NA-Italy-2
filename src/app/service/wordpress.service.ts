@@ -14,9 +14,18 @@ export class WordpressService {
 
   wordpressApiUrl = environment.wordpressApiUrl;
 
-  async getEvents() {
-    const data = await this.http.get(this.wordpressApiUrl, {}, {});
-    const result = data.data;
-    return JSON.parse(result);
-  }
+   getEvents() {
+     this.http.get(this.wordpressApiUrl, {}, {})
+       .then(data => {
+         console.log(data.status);
+         console.log(data.data); // data received by server
+         console.log(data.headers);
+         return JSON.parse(data.data);
+       })
+       .catch(error => {
+         console.log(error.status);
+         console.log(error.error); // error message as string
+         console.log(error.headers);
+       });
+   }
 }

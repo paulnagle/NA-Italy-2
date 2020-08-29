@@ -96,5 +96,7 @@
     "GROUP.GROUPBY": "Group by",
 
     "VIRTUAL_LINK": "Click to join online meeting",
-    "PHONE_MEETING": "Click to phone into meeting"
+    "PHONE_MEETING": "Click to phone into meeting",
+
+    "TEMP_CLOSED": "This meeting is temporarily closed"
 }

@@ -36,8 +36,6 @@ export class ListPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('In ngOnInit');
-
     this.translate.get('FINDING_MTGS').subscribe(value => {
       this.presentLoader(value);
     });
@@ -49,16 +47,16 @@ export class ListPage implements OnInit {
   }
 
   public openMapsLink(destLatitude, destLongitude) {
-    const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude);
+    const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude, '_system');
   }
 
   public openLink(url) {
-    const browser = this.iab.create(url);
+    const browser = this.iab.create(url, '_system');
   }
 
   public dialNum(url) {
     const telUrl = 'tel:' + url;
-    const browser = this.iab.create(telUrl);
+    const browser = this.iab.create(telUrl, '_system');
   }
 
   getServiceGroupNames() {
@@ -78,13 +76,13 @@ export class ListPage implements OnInit {
   }
 
   getAllMeetings() {
-    console.log('In getAllMeetings');
 
     this.MeetingListProvider.getMeetingsSortedByDay().then((data) => {
       this.meetingList = data;
 
       this.meetingList = this.meetingList.filter(meeting => meeting.service_body_bigint = this.getServiceNameFromID(meeting.service_body_bigint));
       this.meetingList = this.meetingList.filter(meeting => meeting.isHybrid = this.isHybrid(meeting));
+      this.meetingList = this.meetingList.filter(meeting => meeting.isTempClosed = this.isTempClosed(meeting));
 
       this.meetingListArea = this.meetingList.concat();
       this.meetingListArea.sort((a, b) => a.service_body_bigint.localeCompare(b.service_body_bigint));
@@ -112,8 +110,6 @@ export class ListPage implements OnInit {
   }
 
   groupMeetingList(meetingList, groupingOption) {
-    console.log('In groupMeetingList');
-
     // A function to convert a flat json list to an javascript array
     const groupJSONList = function (inputArray, key) {
       return inputArray.reduce(function (ouputArray, currentValue) {
@@ -146,11 +142,18 @@ export class ListPage implements OnInit {
   }
 
   isHybrid(meeting) {
-    console.log('formats: ', meeting.formats);
     if (meeting.formats.match(/IB/i)) {
       return 'HYBRID';
     } else {
       return 'NOT-HYBRID';
+    }
+  }
+
+  isTempClosed(meeting) {
+    if (meeting.formats.match(/TC/i)) {
+      return 'TEMPCLOSED';
+    } else {
+      return 'NOT-TEMPCLOSED';
     }
   }
 
@@ -163,7 +166,6 @@ export class ListPage implements OnInit {
 
   dismissLoader() {
     if (this.loader) {
-      console.log('Dismissing loader..');
       this.loader = this.loadingCtrl.dismiss();
       this.loader = null;
     }

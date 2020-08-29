@@ -25,7 +25,6 @@ export class MapmodalPage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private iab: InAppBrowser) {
-    console.log('mapModal constructor');
 
     this.meetingList = this.navParams.data.data;
   }
@@ -38,16 +37,16 @@ export class MapmodalPage implements OnInit {
   }
 
   public openMapsLink(destLatitude: string, destLongitude: string) {
-    const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude );
+    const browser = this.iab.create('https://www.google.com/maps/search/?api=1&query=' + destLatitude + ',' + destLongitude, '_system' );
   }
 
   public openLink(url) {
-    const browser = this.iab.create(url);
+    const browser = this.iab.create(url, '_system');
   }
 
   public dialNum(url) {
     const telUrl = 'tel:' + url;
-    const browser = this.iab.create(telUrl);
+    const browser = this.iab.create(telUrl, '_system');
   }
 
 }

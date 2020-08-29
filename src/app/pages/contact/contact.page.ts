@@ -45,7 +45,7 @@ export class ContactPage implements OnInit {
   }
 
   public openLink(url) {
-    const browser = this.iab.create(url);
+    const browser = this.iab.create(url, '_system');
   }
 
   public dialNum(url) {
