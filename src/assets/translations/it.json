@@ -96,5 +96,7 @@
     "GROUP.GROUPBY": "Visualizza per ",
 
     "VIRTUAL_LINK": "Clicca per partecipare alla riunione online",
-    "PHONE_MEETING": "Click per partecipare alla riunione telefonica"
+    "PHONE_MEETING": "Click per partecipare alla riunione telefonica",
+
+    "TEMP_CLOSED": "La struttura è temporanemente chiusa"
 }

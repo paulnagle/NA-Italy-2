@@ -46,7 +46,6 @@ export class VirtualPage implements OnInit {
           this.timeDisplay = '24hr';
         }
       });
-    console.log('In ngOnInit');
     this.HTMLGrouping = 'city';
     this.translate.get('FINDING_MTGS').subscribe(value => {
       this.loadingCtrl.present(value);
@@ -62,24 +61,22 @@ export class VirtualPage implements OnInit {
   }
 
   public openLink(url) {
-    const browser = this.iab.create(url);
+    const browser = this.iab.create(url, '_system');
   }
 
   public dialNum(url) {
     const telUrl = 'tel:' + url;
-    const browser = this.iab.create(telUrl);
+    const browser = this.iab.create(telUrl, '_system');
   }
 
   getAllMeetings() {
-    console.log('In getAllMeetings');
-
     this.MeetingListProvider.getVirtualMeetings().then((data) => {
       this.meetingList = data;
       this.meetingList = this.meetingList.filter(meeting => meeting.start_time = this.convertTo12Hr(meeting.start_time));
 
       this.meetingListDay = this.meetingList.concat();
       this.meetingListDay = this.groupMeetingList(this.meetingListDay, this.meetingsListDayGrouping);
-      console.log(this.meetingListDay);
+
       this.loadingCtrl.dismiss();
 
     });
@@ -88,7 +85,6 @@ export class VirtualPage implements OnInit {
   }
 
   groupMeetingList(meetingList, groupingOption) {
-    console.log('In groupMeetingList');
 
     // A function to convert a flat json list to an javascript array
     const groupJSONList = function (inputArray, key) {
@@ -124,7 +120,8 @@ export class VirtualPage implements OnInit {
   public convertTo12Hr(timeString) {
 
     let H = +timeString.substr(0, 2);
-    H = H + 2;
+    const offset = new Date().getTimezoneOffset() / 60;
+    H = H + offset;
 
     timeString = H + timeString.substr(2, 3) ;
     return timeString;

@@ -3,7 +3,7 @@ if [ -z "$1" ]
 then
     rm -rf www
 
-    # ionic cordova platform rm ios
+    ionic cordova platform rm ios
     ionic cordova platform rm android
 
     ionic cordova plugin rm cordova-plugin-inappbrowser
@@ -16,7 +16,7 @@ then
 
     rm -rf platform/*
 
-    # ionic cordova platform add ios@latest
+    ionic cordova platform add ios@latest
     ionic cordova platform add android@latest
 
     ionic cordova plugin add cordova-plugin-inappbrowser
@@ -28,10 +28,23 @@ then
     ionic cordova plugin add com-badrit-base64
 fi
 
-# ionic cordova prepare ios --prod
+if [[ "$1" -eq "quick" ]]
+then
+    rm -rf www
+
+    ionic cordova platform rm ios
+    ionic cordova platform rm android
+
+    rm -rf platform/*
+
+    ionic cordova platform add ios@latest
+    ionic cordova platform add android@latest
+fi
+
+ionic cordova prepare ios --prod
 ionic cordova prepare android --prod 
 
-#ionic cordova resources ios
+# ionic cordova resources ios
 # ionic cordova resources android
 
 #ionic build --prod  --minifyjs   --minifycss  --optimizejs
