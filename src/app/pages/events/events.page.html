@@ -14,8 +14,8 @@
   <ion-card>
 
     <ion-card-header>
-      <div *ngIf="event.name"><ion-card-title>{{ event.name | htmlenc}}</ion-card-title></div>
-      <div *ngIf="event.event_subtitle"><ion-card-subtitle>{{ event.event_subtitle | htmlenc }}</ion-card-subtitle></div>
+      <div *ngIf="event.name"><ion-card-title>{{ event.name  }}</ion-card-title></div>
+      <div *ngIf="event.event_subtitle"><ion-card-subtitle>{{ event.event_subtitle   }}</ion-card-subtitle></div>
     </ion-card-header>
 
     <ion-card-content>
@@ -26,15 +26,15 @@
 
       <div *ngIf="event.details">
         <br>
-        <div [innerHTML]="event.details | htmlenc"></div>
+        <div [innerHTML]="event.details  "></div>
         <br>
       </div>
 
-      <div *ngIf="event.location_name | htmlenc">
+      <div *ngIf="event.location_name  ">
         <br>
         <h4>{{ event.location_name }}</h4>
       </div>
-      <div *ngIf="event.location_address | htmlenc">
+      <div *ngIf="event.location_address  ">
         <h4>{{ event.location_address }}</h4>
       </div>
 

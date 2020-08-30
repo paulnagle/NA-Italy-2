@@ -35,23 +35,14 @@ export class EventsPage implements OnInit {
 
     this.http.get(this.wordpressApiUrl, {}, {})
         .then(data => {
-          console.log(data.status);
-          console.log(data.data); // data received by server
-          console.log(data.headers);
-          let jsonParsed = JSON.parse(data.data);
+          const jsonParsed = JSON.parse(data.data);
+
           const eventsObj = jsonParsed.events;
           this.eventsData = Object.values(eventsObj);
-          const printStr2 = JSON.stringify(this.eventsData, null, 2);
-          console.log('*********************************');
-          console.log(printStr2);
-
           this.eventsData = this.eventsData.filter(event => event.end > this.now);
-       //   this.eventsData.filter(event => event.image_url = encodeURI(event.image_url));
-
+          this.eventsData = this.eventsData.filter(event => event.name =  this.tidyName(event.name));
           this.eventsData.reverse();
-          const printStr = JSON.stringify(this.eventsData, null, 2);
-          console.log('*********************************');
-          console.log(printStr);
+
           this.loadingCtrl.dismiss();
         })
         .catch(error => {
@@ -60,6 +51,11 @@ export class EventsPage implements OnInit {
           console.log(error.headers);
           this.loadingCtrl.dismiss();
         });
+  }
+
+  public tidyName(name) {
+    const doc = new DOMParser().parseFromString(name, 'text/html');
+    return doc.body.textContent || '';
   }
 
   public openLink(url: string) {
