@@ -49,4 +49,21 @@ export class MapmodalPage implements OnInit {
     const browser = this.iab.create(telUrl, '_system');
   }
 
+  isHybrid(meeting) {
+    console.log('isHybrid');
+    if (meeting.formats.match(/IB/i)) {
+      return 'HYBRID';
+    } else {
+      return 'NOT-HYBRID';
+    }
+  }
+
+  isTempClosed(meeting) {
+    console.log('isTempCLosed');
+    if (meeting.formats.match(/TC/i)) {
+      return 'TEMPCLOSED';
+    } else {
+      return 'NOT-TEMPCLOSED';
+    }
+  }
 }

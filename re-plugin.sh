@@ -16,7 +16,7 @@ then
 
     rm -rf platform/*
 
-    ionic cordova platform add ios@latest
+    # ionic cordova platform add ios@latest
     ionic cordova platform add android@latest
 
     ionic cordova plugin add cordova-plugin-inappbrowser
@@ -32,16 +32,16 @@ if [[ "$1" -eq "quick" ]]
 then
     rm -rf www
 
-    ionic cordova platform rm ios
+    # ionic cordova platform rm ios
     ionic cordova platform rm android
 
     rm -rf platform/*
 
-    ionic cordova platform add ios@latest
+    # ionic cordova platform add ios@latest
     ionic cordova platform add android@latest
 fi
 
-ionic cordova prepare ios --prod
+# ionic cordova prepare ios --prod
 ionic cordova prepare android --prod 
 
 # ionic cordova resources ios

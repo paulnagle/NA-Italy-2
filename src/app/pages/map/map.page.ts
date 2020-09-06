@@ -265,6 +265,7 @@ export class MapPage implements OnInit {
     });
 
     this.map.on('trigger_initial_search_changed').subscribe((params: any[]) => {
+      console.log('trigger initial search changed');
       this.translate.get('FINDING_MTGS').subscribe(value => {
         this.presentLoader(value);
       });
@@ -287,6 +288,7 @@ export class MapPage implements OnInit {
     });
 
     if (this.platform.is('ios')) {
+      console.log('triggering initial search cos ios');
       this.map.set('trigger_initial_search', 'go');
     }
 
@@ -294,6 +296,7 @@ export class MapPage implements OnInit {
 
 
   addCluster() {
+    console.log('In addclsuter');
     const markerLabelOptions: MarkerLabel = {
       bold: true,
       fontSize: 15,
@@ -350,6 +353,7 @@ export class MapPage implements OnInit {
 
 
   getMeetings(params: any[] | { farLeft: ILatLng; }[]) {
+    console.log('in getMeetings');
     this.mapLatitude = params[0].target.lat;
     this.eagerMapLat = this.mapLatitude;
 
@@ -366,36 +370,18 @@ export class MapPage implements OnInit {
       if (JSON.stringify(data) === '{}') {  // empty result set!
         this.meetingList = JSON.parse('[]');
       } else {
+        console.log('got the raduis meeting info');
         this.meetingList = data;
         this.meetingList = this.meetingList.filter((meeting: { latitude }) => meeting.latitude = parseFloat(meeting.latitude));
         this.meetingList = this.meetingList.filter((meeting: { longitude }) => meeting.longitude = parseFloat(meeting.longitude));
-        this.meetingList = this.meetingList.filter(meeting => meeting.isTempClosed = this.isTempClosed(meeting));
-        this.meetingList = this.meetingList.filter(meeting => meeting.isHybrid = this.isHybrid(meeting));
-
       }
       this.populateMarkers();
       this.addCluster();
     });
   }
 
-  isHybrid(meeting) {
-    if (meeting.formats.match(/IB/i)) {
-      return 'HYBRID';
-    } else {
-      return 'NOT-HYBRID';
-    }
-  }
-
-  isTempClosed(meeting) {
-    if (meeting.formats.match(/TC/i)) {
-      return 'TEMPCLOSED';
-    } else {
-      return 'NOT-TEMPCLOSED';
-    }
-  }
-
   populateMarkers() {
-
+    console.log('In populateMarkers');
     this.markers = [];
     let i: number;
     let areColocated = false;

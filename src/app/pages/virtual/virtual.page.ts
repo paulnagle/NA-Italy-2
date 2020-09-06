@@ -80,8 +80,6 @@ export class VirtualPage implements OnInit {
       this.loadingCtrl.dismiss();
 
     });
-
-
   }
 
   groupMeetingList(meetingList, groupingOption) {
@@ -119,11 +117,11 @@ export class VirtualPage implements OnInit {
 
   public convertTo12Hr(timeString) {
 
-    let H = +timeString.substr(0, 2);
-    const offset = new Date().getTimezoneOffset() / 60;
-    H = H + offset;
+    const H = +timeString.substr(0, 2);
+    const offset = new Date().getTimezoneOffset() / 60 * -1;
+    const offsetH = offset + H;
 
-    timeString = H + timeString.substr(2, 3) ;
+    timeString = offsetH + timeString.substr(2, 3) ;
     return timeString;
 
   }
