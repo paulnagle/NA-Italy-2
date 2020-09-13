@@ -44,10 +44,9 @@
         </ion-card-subtitle>
 
         <div *ngIf="meeting.isTempClosed === 'TEMPCLOSED'">
-          <ion-button  color="danger">
-            <ion-ripple-effect></ion-ripple-effect>
-            {{'TEMP_CLOSED' | translate}}
-          </ion-button>
+          <ion-chip color="danger" class="ion-text-wrap">
+            <ion-label>{{'TEMP_CLOSED' | translate}}</ion-label>
+          </ion-chip>
         </div>
 
       </ion-card-header>

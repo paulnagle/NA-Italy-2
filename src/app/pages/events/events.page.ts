@@ -40,8 +40,8 @@ export class EventsPage implements OnInit {
           const eventsObj = jsonParsed.events;
           this.eventsData = Object.values(eventsObj);
           this.eventsData = this.eventsData.filter(event => event.end > this.now);
-          this.eventsData = this.eventsData.filter(event => event.name =  this.tidyName(event.name));
-          this.eventsData.reverse();
+          this.eventsData = this.eventsData.filter(event => event.name = this.tidyName(event.name));
+          this.eventsData.sort((a, b) => (a.start > b.start) ? 1 : -1);
 
           this.loadingCtrl.dismiss();
         })

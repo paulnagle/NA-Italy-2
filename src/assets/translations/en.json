@@ -45,6 +45,7 @@
     "YEARSCLEAN": " Years Clean",
     "DAYS": " days",
     "WEEKS": " weeks",
+    "MONTHS": "months",
     "YEARS": " years",
     "BIRTHDAY": "Clean Time Birthday!",
     "ENTERCLEANDATE": "Enter clean date ",
@@ -98,5 +99,6 @@
     "VIRTUAL_LINK": "Click to join online meeting",
     "PHONE_MEETING": "Click to phone into meeting",
 
-    "TEMP_CLOSED": "This meeting is temporarily closed"
+    "TEMP_CLOSED": "This meeting is temporarily closed",
+    "SEARCH": "Search..."
 }
