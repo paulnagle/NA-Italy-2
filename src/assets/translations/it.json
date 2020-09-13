@@ -45,6 +45,7 @@
     "YEARSCLEAN": " anni di pulizia",
     "DAYS": " giorni",
     "WEEKS": " settimane",
+    "MONTHS": "mesi",
     "YEARS": " anni",
     "BIRTHDAY": "Compleanno di Pulizia!",
     "ENTERCLEANDATE": "Inserisci la tua data di pulizia ",
@@ -98,5 +99,6 @@
     "VIRTUAL_LINK": "Clicca per partecipare alla riunione online",
     "PHONE_MEETING": "Click per partecipare alla riunione telefonica",
 
-    "TEMP_CLOSED": "La struttura è temporanemente chiusa"
+    "TEMP_CLOSED": "La struttura è temporanemente chiusa",
+    "SEARCH": "Cerca..."
 }

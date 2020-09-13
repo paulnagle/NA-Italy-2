@@ -45,6 +45,7 @@
     "YEARSCLEAN": " Years Clean",
     "DAYS": " days",
     "WEEKS": " weeks",
+    "MONTHS": "months",
     "YEARS": " years",
     "BIRTHDAY": "Clean Time Birthday!",
     "ENTERCLEANDATE": "Enter clean date ",
@@ -91,12 +92,13 @@
 
     "EVENTS.MOREDETAILS": "More details...",
 
-    "GROUP.COUNTY": "County",
+    "GROUP.COUNTY": "Province",
     "GROUP.AREA": "Area",
     "GROUP.GROUPBY": "Group by",
 
     "VIRTUAL_LINK": "Click to join online meeting",
     "PHONE_MEETING": "Click to phone into meeting",
 
-    "TEMP_CLOSED": "This meeting is temporarily closed"
+    "TEMP_CLOSED": "This meeting is temporarily closed",
+    "SEARCH": "Search..."
 }

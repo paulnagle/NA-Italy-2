@@ -60,10 +60,9 @@
               </ion-card-subtitle>
 
               <div *ngIf="group2.isTempClosed === 'TEMPCLOSED'">
-                <ion-button  color="danger">
-                  <ion-ripple-effect></ion-ripple-effect>
-                  {{'TEMP_CLOSED' | translate}}
-                </ion-button>
+                <ion-chip color="danger" class="ion-text-wrap">
+                  <ion-label>{{'TEMP_CLOSED' | translate}}</ion-label>
+                </ion-chip>
               </div>
 
             </ion-card-header>
@@ -94,7 +93,7 @@
               </div>
   
               <div *ngIf="group2.virtual_meeting_link">
-                <ion-button expand="block"   (click)="openLink(group2.virtual_meeting_link)">
+                <ion-button expand="block"   (click)="openLink(group2.virtual_meeting_link)"  class="ion-text-wrap">
                   <ion-ripple-effect></ion-ripple-effect>
                   <ion-icon name="cloud"> </ion-icon>&nbsp;{{'VIRTUAL_LINK' | translate }}
                 </ion-button>
@@ -154,10 +153,9 @@
               </ion-card-subtitle>
 
               <div *ngIf="group2.isTempClosed === 'TEMPCLOSED'">
-                <ion-button  color="danger">
-                  <ion-ripple-effect></ion-ripple-effect>
-                  {{'TEMP_CLOSED' | translate}}
-                </ion-button>
+                <ion-chip color="danger" class="ion-text-wrap">
+                  <ion-label>{{'TEMP_CLOSED' | translate}}</ion-label>
+                </ion-chip>
               </div>
 
             </ion-card-header>

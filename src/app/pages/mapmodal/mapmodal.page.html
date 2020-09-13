@@ -44,10 +44,9 @@
         </ion-card-subtitle>
 
         <div *ngIf="meeting.isTempClosed === 'TEMPCLOSED'">
-          <ion-button  color="danger">
-            <ion-ripple-effect></ion-ripple-effect>
-            {{'TEMP_CLOSED' | translate}}
-          </ion-button>
+          <ion-chip color="danger" class="ion-text-wrap">
+            <ion-label>{{'TEMP_CLOSED' | translate}}</ion-label>
+          </ion-chip>
         </div>
 
       </ion-card-header>
@@ -69,6 +68,8 @@
         <div *ngIf="meeting.train_lines">{{'TRAIN' | translate}} : {{meeting.train_lines  }}<br></div>
         <div *ngIf="meeting.bus_lines">{{'BUS' | translate}} : {{meeting.bus_lines  }}<br></div>
         <div *ngIf="meeting.formats"><i>{{'FORMATS' | translate}} : {{meeting.formats  }}</i><br></div>
+
+        
 
         <div *ngIf="!meeting.virtual_meeting_link || meeting.isHybrid === 'HYBRID'">
           <ion-button expand="block" (click)="openMapsLink(meeting.latitude , meeting.longitude)">

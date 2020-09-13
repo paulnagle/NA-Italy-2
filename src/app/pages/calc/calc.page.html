@@ -15,6 +15,8 @@
     <ion-label>{{'ENTERCLEANDATE' | translate}}-> </ion-label>
     <ion-datetime
       displayFormat="DD MMM YYYY"
+      display-timezone="utc"
+      max="{{maxDisplayDate}}"
       [monthShortNames]="monthShortNames"
       [monthNames]="monthNames"
       [cancelText]="cancelText"
@@ -23,6 +25,12 @@
       (ionChange)=getCleanTime()>
     </ion-datetime>
   </ion-item>
+
+  <ion-card *ngIf="cleanHumanized">
+    <ion-card-content>
+      <h1>{{ cleanHumanized.years}} {{ 'YEARS' | translate}}, {{ cleanHumanized.months }}  {{'MONTHS' | translate }}, {{ cleanHumanized.days }} {{ 'DAYS' | translate}}</h1>
+    </ion-card-content>
+  </ion-card>
 
   <div *ngIf="tag != 'none'">
     <ion-card>
@@ -33,26 +41,5 @@
       </ion-card-content>
     </ion-card>
   </div>
-
-  <ion-card>
-    <ion-card-header>{{'CLEANTIMEINDAYS' | translate }}</ion-card-header>
-    <ion-card-content>
-      <h1>{{ cleanTimeInDays }} {{'DAYS' | translate}}</h1>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>{{'CLEANTIMEINWEEKS' | translate }}</ion-card-header>
-    <ion-card-content>
-      <h1>{{ cleanTimeInWeeks }} {{'WEEKS' | translate}}</h1>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>{{'CLEANTIMEINYEARS' | translate }}</ion-card-header>
-    <ion-card-content>
-      <h1>{{ cleanTimeInYears }}&nbsp;{{'YEARS' | translate}}</h1>
-    </ion-card-content>
-  </ion-card>
 
 </ion-content>
