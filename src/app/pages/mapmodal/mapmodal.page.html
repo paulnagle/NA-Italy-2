@@ -43,7 +43,7 @@
           </div>
         </ion-card-subtitle>
 
-        <div *ngIf="meeting.isTempClosed === 'TEMPCLOSED'">
+        <div *ngIf="isTempClosed(meeting) === 'TEMPCLOSED'">
           <ion-chip color="danger" class="ion-text-wrap">
             <ion-label>{{'TEMP_CLOSED' | translate}}</ion-label>
           </ion-chip>
@@ -71,7 +71,7 @@
 
         
 
-        <div *ngIf="!meeting.virtual_meeting_link || meeting.isHybrid === 'HYBRID'">
+        <div *ngIf="!meeting.virtual_meeting_link || isHybrid(meeting) === 'HYBRID'">
           <ion-button expand="block" (click)="openMapsLink(meeting.latitude , meeting.longitude)">
             <ion-ripple-effect></ion-ripple-effect>
             <ion-icon name="map"> </ion-icon>&nbsp;{{'MAP' | translate}}
