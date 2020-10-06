@@ -7,6 +7,9 @@ import { Storage } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
+import * as moment from 'moment';
+import 'moment-timezone';
+
 @Component({
   selector: 'app-virtual',
   templateUrl: './virtual.page.html',
@@ -72,7 +75,8 @@ export class VirtualPage implements OnInit {
   getAllMeetings() {
     this.MeetingListProvider.getVirtualMeetings().then((data) => {
       this.meetingList = data;
-      this.meetingList = this.meetingList.filter(meeting => meeting.start_time = this.convertTo12Hr(meeting.start_time));
+      this.setRawStartTime(this.meetingList);
+//      this.meetingList = this.meetingList.filter(meeting => meeting.start_time = this.convertTo12Hr(meeting.start_time));
 
       this.meetingListDay = this.meetingList.concat();
       this.meetingListDay = this.groupMeetingList(this.meetingListDay, this.meetingsListDayGrouping);
@@ -115,15 +119,48 @@ export class VirtualPage implements OnInit {
     return this.shownGroup === group;
   }
 
-  public convertTo12Hr(timeString) {
 
-    const H = +timeString.substr(0, 2);
-    const offset = new Date().getTimezoneOffset() / 60 * -1;
-    const offsetH = offset + H;
+  setRawStartTime(meetingList) {
+    for (let meeting of meetingList) {
+      const startTimeRaw = this.getAdjustedDateTime(
+        parseInt(meeting.weekday_tinyint, 10) === 1 ? 7 : parseInt(meeting.weekday_tinyint, 10) - 1,
+        meeting.start_time,
+        meeting.time_zone
+      );
 
-    timeString = offsetH + timeString.substr(2, 3) ;
-    return timeString;
+      meeting.start_time_raw = startTimeRaw.format('h:mm a');
 
+      // const timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      // meeting.start_time_raw = meeting.start_time_raw + ' (' + timeZoneName + ' )';
+
+    }
   }
+
+
+  getAdjustedDateTime(meetingDay, meetingTime, meetingTimeZone) {
+    let meetingDateTimeObj;
+
+    if (!meetingTimeZone) {
+      meetingTimeZone = 'UTC';
+    }
+
+    // Get an object that represents the meeting in its time zone
+    meetingDateTimeObj = moment.tz(meetingTimeZone).set({
+        hour: meetingTime.split(':')[0],
+        minute: meetingTime.split(':')[1],
+        second: 0
+    }).isoWeekday(meetingDay);
+
+      // Convert meeting to target (local) time zone
+    meetingDateTimeObj = meetingDateTimeObj.clone().tz(moment.tz.guess());
+
+    const now = moment.tz(moment.tz.guess());
+    if (now > meetingDateTimeObj || now.isoWeekday() === meetingDateTimeObj.isoWeekday()) {
+      meetingDateTimeObj.add(1, 'weeks');
+    }
+
+    return meetingDateTimeObj;
+  }
+
 
 }
