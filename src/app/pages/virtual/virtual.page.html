@@ -35,25 +35,25 @@
               <ion-card-subtitle no-padding>
                 <div ngSwitch="{{ group2.weekday_tinyint }}">
                   <div *ngSwitchCase="'1'" [ngClass]="'one'">
-                    <ion-badge color="sunday"><b>{{'SUNDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="sunday"><b>{{'SUNDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'2'" [ngClass]="'one'">
-                    <ion-badge color="monday"><b>{{'MONDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="monday"><b>{{'MONDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'3'" [ngClass]="'one'">
-                    <ion-badge color="tuesday"><b>{{'TUESDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="tuesday"><b>{{'TUESDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'4'" [ngClass]="'one'">
-                    <ion-badge color="wednesday"><b>{{'WEDNESDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="wednesday"><b>{{'WEDNESDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'5'" [ngClass]="'one'">
-                    <ion-badge color="thursday"><b>{{'THURSDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="thursday"><b>{{'THURSDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'6'" [ngClass]="'one'">
-                    <ion-badge color="friday"><b>{{'FRIDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="friday"><b>{{'FRIDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchCase="'7'" [ngClass]="'one'">
-                    <ion-badge color="saturday"><b>{{'SATURDAY' | translate }} {{ group2.start_time | slice:0:5 }} </b></ion-badge>
+                    <ion-badge color="saturday"><b>{{'SATURDAY' | translate }} {{ group2.start_time_raw }} </b></ion-badge>
                   </div>
                   <div *ngSwitchDefault>Nothing Found.</div>
                 </div>
