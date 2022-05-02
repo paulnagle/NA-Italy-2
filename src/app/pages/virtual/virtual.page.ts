@@ -3,7 +3,7 @@ import { MeetingListProviderService } from '../../service/meeting-list-provider.
 import { ServiceGroupsProviderService } from '../../service/service-groups-provider.service';
 import { LoadingService } from '../../service/loading.service';
 import { firstBy } from 'thenby';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../service/storage.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -34,7 +34,7 @@ export class VirtualPage implements OnInit {
   constructor(
     private MeetingListProvider: MeetingListProviderService,
     private ServiceGroupsProvider: ServiceGroupsProviderService,
-    private storage: Storage,
+    private storage: StorageService,
     public loadingCtrl: LoadingService,
     private iab: InAppBrowser,
     private translate: TranslateService) {

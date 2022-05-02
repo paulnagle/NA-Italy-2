@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../service/storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import 'moment-precise-range-plugin';
@@ -41,36 +41,36 @@ export class CalcPage implements OnInit {
   doneText;
 
   constructor(
-    private storage: Storage,
+    private storage: StorageService,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
     let cleanDate;
 
-    this.storage.ready().then(() => {
-      this.storage.get('cleanDate').then(value => {
-        if (value) {
-          cleanDate = moment(value).toISOString();
-        } else {
-          cleanDate = moment().toISOString();
-        }
 
-        this.maxDisplayDate = moment().toISOString();
-        this.todayDate = moment();
+    this.storage.get('cleanDate').then(value => {
+      if (value) {
+        cleanDate = moment(value).toISOString();
+      } else {
+        cleanDate = moment().toISOString();
+      }
 
-        this.todayInMilliseconds = this.todayDate.valueOf();
-        this.todayDay = this.todayDate.date();
-        this.todayMonth = this.todayDate.month();
-        this.todayYear = this.todayDate.year();
+      this.maxDisplayDate = moment().toISOString();
+      this.todayDate = moment();
 
-        this.myDate = cleanDate;
+      this.todayInMilliseconds = this.todayDate.valueOf();
+      this.todayDay = this.todayDate.date();
+      this.todayMonth = this.todayDate.month();
+      this.todayYear = this.todayDate.year();
 
-        this.tag = 'none';
-        this.wait = false;
-        this.getCleanTime();
-      });
+      this.myDate = cleanDate;
+
+      this.tag = 'none';
+      this.wait = false;
+      this.getCleanTime();
     });
+
 
     this.translate.get('JANUARY').subscribe(value1 => {
       this.monthNames.push(value1);

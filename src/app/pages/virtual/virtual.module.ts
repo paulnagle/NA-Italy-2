@@ -8,6 +8,7 @@ import { MeetingListProviderService } from 'src/app/service/meeting-list-provide
 import { HTTP } from '@ionic-native/http/ngx';
 import { TranslateModule } from '@ngx-translate/core';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { StorageService } from 'src/app/service/storage.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   providers: [
     HTTP,
     MeetingListProviderService,
-    InAppBrowser
+    InAppBrowser,
+    StorageService
   ]
 })
 export class VirtualPageModule {}

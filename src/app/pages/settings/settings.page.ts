@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../service/storage.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -12,20 +12,20 @@ export class SettingsPage implements OnInit {
   language: string;
 
   constructor(
-    private storage: Storage,
+    private storage: StorageService,
     private translate: TranslateService
   ) { }
 
   ngOnInit() {
 
-    this.storage.get('language')
-      .then(langValue => {
-        if (langValue) {
-          this.language = langValue;
-        } else {
-          this.language = 'it';
-        }
-      });
+    this.storage.get('language').then((value) => {
+      if (value) {
+        this.translate.use(value);
+      } else {
+        this.translate.use('it');
+        this.storage.set('language', 'it');
+      }
+    });
 
   }
 
