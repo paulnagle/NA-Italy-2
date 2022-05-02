@@ -5,7 +5,6 @@ import {
   NgZone,
   OnInit
 } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import {
   Platform,
   ModalController
@@ -104,7 +103,6 @@ export class MapPage implements OnInit {
   constructor(
     private MeetingListProvider: MeetingListProviderService,
     public loadingCtrl: LoadingService,
-    private storage: Storage,
     private platform: Platform,
     private translate: TranslateService,
     private zone: NgZone,

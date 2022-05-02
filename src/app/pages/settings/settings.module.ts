@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { SettingsPageRoutingModule } from './settings-routing.module';
 import { SettingsPage } from './settings.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { StorageService } from 'src/app/service/storage.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
     SettingsPageRoutingModule,
     TranslateModule
   ],
-  declarations: [SettingsPage]
+  declarations: [SettingsPage],
+  providers: [StorageService]
 })
 export class SettingsPageModule {}

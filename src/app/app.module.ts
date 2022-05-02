@@ -9,7 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage-angular'; 
+import { StorageService } from './service/storage.service';
+import { Drivers } from '@ionic/storage';
 import { HTTP } from '@ionic-native/http/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
@@ -24,7 +26,10 @@ export function createTranslateLoader(http: HttpClient) {
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({     
+      name: '__naitaliadb',
+      driverOrder: [ Drivers.LocalStorage]
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -37,7 +42,8 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     HTTP,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

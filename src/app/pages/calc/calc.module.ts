@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { CalcPageRoutingModule } from './calc-routing.module';
 import { CalcPage } from './calc.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { StorageService } from 'src/app/service/storage.service';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CalcPageRoutingModule,
     TranslateModule
   ],
-  declarations: [CalcPage]
+  declarations: [CalcPage],
+  providers: [StorageService]
 })
 export class CalcPageModule {}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '../../service/loading.service';
 import { JftService } from '../../service/jft.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Storage } from '@ionic/storage';
+import { StorageService } from '../../service/storage.service';
 
 @Component({
   selector: 'app-jft',
@@ -21,7 +21,7 @@ export class JftPage implements OnInit {
     public loadingCtrl: LoadingService,
     public JftProvider: JftService,
     private translate: TranslateService,
-    private storage: Storage
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
