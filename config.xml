@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.naitalia.app" version="3.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.naitalia.app" version="3.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>NA Italia</name>
     <description>NA Italia</description>
     <author email="web@nasouth.ie" href="https://na-italia.org/">NA Italia</author>
@@ -18,6 +18,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="android-compileSdkVersion" value="32" />
     <preference name="GOOGLE_MAPS_ANDROID_API_KEY" value="AIzaSyA-BELBbbsJnG41sViw4Ve0A1CVxO757Xc" />
     <preference name="GOOGLE_MAPS_IOS_API_KEY" value="AIzaSyA-BELBbbsJnG41sViw4Ve0A1CVxO757Xc" />
     <platform name="android">
@@ -35,18 +36,18 @@
         <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-        <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
-        <splash density="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
-        <splash density="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
-        <splash density="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
-        <splash density="land-xxhdpi" src="resources/android/splash/drawable-land-xxhdpi-screen.png" />
-        <splash density="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
-        <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-ldpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-mdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-hdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-xhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-xxhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-ldpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-mdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-hdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-xhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

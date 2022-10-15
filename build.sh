@@ -1,5 +1,12 @@
 #!/bin/bash
 
+RED='\033[0;31m'  
+NC='\033[0m' # No Color
+
+red_text() {
+    echo -e "${RED}>>>>>>>>> [${FUNCNAME[1]}] $1${NC}"
+}
+
 usage(){
 	echo "Usage: -b (Build for browser)"
     echo "       -i (Build for ios)"
@@ -9,7 +16,7 @@ usage(){
 }
 
 add_plugins() {
-    echo "** Adding cordova plugins"
+    red_text "** Adding cordova plugins"
     ionic cordova plugin add cordova-plugin-splashscreen
     ionic cordova plugin add cordova-plugin-statusbar
     ionic cordova plugin add cordova-plugin-googlemaps
@@ -22,11 +29,11 @@ add_plugins() {
 }
 
 install_deps() {
-    echo "** Installing ionic cli"
-    npm install -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+    red_text "** Installing ionic cli"
+    npm update -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
 
-    echo "** Installing other npm dependencies"
-    npm install --save \
+    red_text "** Installing other npm dependencies"
+    npm update --save \
         @ionic-native/google-maps \
         @ionic-native/base64 \
         @awesome-cordova-plugins/in-app-browser \
@@ -40,15 +47,18 @@ install_deps() {
         thenby \
         moment \
         moment-timezone
+
+    red_text "** Running npm audit fix"
+    npm audit fix
 }
 
 clean_old_build() {
-    rm -rf www
-
+    red_text "!! Removing cordova platforms"
     ionic cordova platform rm ios
     ionic cordova platform rm android
     ionic cordova platform rm browser
 
+    red_text "!! Removing cordova plugins"
     ionic cordova plugin rm cordova-plugin-splashscreen
     ionic cordova plugin rm cordova-plugin-statusbar
     ionic cordova plugin rm cordova-plugin-googlemaps
@@ -58,25 +68,36 @@ clean_old_build() {
     ionic cordova plugin rm cordova-plugin-geolocation
     ionic cordova plugin rm cordova-plugin-advanced-http
     ionic cordova plugin rm cordova-plugin-androidx-adapter
-    rm -rf platform/*
+    red_text "!! Deleting platform folder"
+    rm -rf platform
+    red_text "!! Deleting node_module folder"
+    rm -rf node_modules
+    red_text "!! Deleting plugins folder"
+    rm -rf plugins
+    red_text "!! Deleting www folder"
+    rm -rf www
 }
 
 build_for() {
     PLATFORM=$1
 
-    echo ">>>> Building for ${PLATFORM}"
+    red_text ">>>> Building for ${PLATFORM}"
     install_deps
-    echo ">>>> ionic cordova platform add ${PLATFORM} --confirm --no-interactive"
-    ionic cordova platform add "${PLATFORM}" --confirm --no-interactive
-    echo ">>>> add_plugins"
+    red_text ">>>> ionic cordova platform add ${PLATFORM} --confirm --no-interactive"
+    if [ ${PLATFORM} == "android" ]; then
+        ionic cordova platform add android@11 --confirm --no-interactive 
+    else
+        ionic cordova platform add "${PLATFORM}" --confirm --no-interactive
+    fi
+    red_text ">>>> add_plugins"
     add_plugins
-    if [[ "${PLATFORM}" != "browser" ]]; then 
-        echo ">>>> ionic cordova resources ${PLATFORM}"
-        ionic cordova resources "${PLATFORM}"
-    fi 
-    echo ">>>> ionic cordova prepare ${PLATFORM}"
+    # if [[ "${PLATFORM}" != "browser" ]]; then 
+    #     echo ">>>> ionic cordova resources ${PLATFORM}"
+    #     ionic cordova resources "${PLATFORM}"
+    # fi 
+    red_text ">>>> ionic cordova prepare ${PLATFORM}"
     ionic cordova prepare "${PLATFORM}" 
-    echo ">>>> ionic cordova build ${PLATFORM}"
+    red_text ">>>> ionic cordova build ${PLATFORM}"
     ionic cordova build "${PLATFORM}" 
 }
 
