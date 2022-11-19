@@ -51,7 +51,11 @@ setup_node_npm() {
 
 install_deps() {
     red_text "** Installing ionic cli"
-    npm update -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+    if ! [ command -v ionic ]; then
+        npm install -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+    else
+        npm update -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+    fi
 
     red_text "** Installing other npm dependencies"
     npm update --save \
