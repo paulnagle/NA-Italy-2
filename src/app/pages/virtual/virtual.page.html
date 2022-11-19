@@ -76,13 +76,19 @@
               <div *ngIf="group2.bus_lines">{{'BUS' | translate}} : {{group2.bus_lines  }}<br></div>
               <div *ngIf="group2.formats"><i>{{'FORMATS' | translate}} : {{group2.formats  }}</i><br></div>
               <br>
-
-  
-              <div *ngIf="group2.comments">
-                <ion-button expand="block" (click)="openLink(group2.comments)" class="ion-text-wrap">
+          
+              <div *ngIf="group2.virtual_meeting_link">
+                <ion-button expand="block" (click)="openLink(group2.virtual_meeting_link)" class="ion-text-wrap">
                   <ion-ripple-effect></ion-ripple-effect>
                   <ion-icon name="cloud"> </ion-icon>&nbsp;{{'VIRTUAL_LINK' | translate }}
                 </ion-button>
+              </div>
+          
+              <div *ngIf="group2.virtual_meeting_link">
+                <ion-button expand="block" *ngIf="group2.phone_meeting_number" (click)="dialNum(meegroup2ting.phone_meeting_number)">
+                  <ion-ripple-effect></ion-ripple-effect>
+                  <ion-icon name="call" > </ion-icon>&nbsp;{{'PHONE_MEETING' | translate }}
+                </ion-button> 
               </div>
 
 
