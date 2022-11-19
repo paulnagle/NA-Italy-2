@@ -19,13 +19,34 @@ add_plugins() {
     red_text "** Adding cordova plugins"
     ionic cordova plugin add cordova-plugin-splashscreen
     ionic cordova plugin add cordova-plugin-statusbar
-    ionic cordova plugin add cordova-plugin-googlemaps
+    # ionic cordova plugin add cordova-plugin-googlemaps
+    ionic cordova plugin add https://github.com/mapsplugin/cordova-plugin-googlemaps.git#0b8ea76ad34fb2a202a9de1b9d0e051a82ad9443
     ionic cordova plugin add com-badrit-base64
     ionic cordova plugin add cordova-plugin-ionic-webview
     ionic cordova plugin add cordova-plugin-inappbrowser
     ionic cordova plugin add cordova-plugin-geolocation
     ionic cordova plugin add cordova-plugin-advanced-http
     ionic cordova plugin add cordova-plugin-androidx-adapter
+}
+
+setup_node_npm() {
+    red_text "Setting up node and npm versions"
+    
+    if [ ! -d ~/.nvm ]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+    fi
+
+    export NVM_DIR=$HOME/.nvm;
+    source $NVM_DIR/nvm.sh;
+
+    NVM_VERSION_REQUIRED="v16.18.1"
+    NVM_VERSION_CURRENT=$(nvm version)
+    if [[ "${NVM_VERSION_CURRENT}" != "${NVM_VERSION_REQUIRED}" ]]; then
+        nvm install v16.18.1
+        nvm use v16.18.1
+    else
+        red_text "node version: ${NVM_VERSION_CURRENT}"
+    fi
 }
 
 install_deps() {
@@ -82,6 +103,7 @@ build_for() {
     PLATFORM=$1
 
     red_text ">>>> Building for ${PLATFORM}"
+    setup_node_npm
     install_deps
     red_text ">>>> ionic cordova platform add ${PLATFORM} --confirm --no-interactive"
     if [ ${PLATFORM} == "android" ]; then
