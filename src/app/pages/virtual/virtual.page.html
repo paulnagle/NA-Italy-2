@@ -85,7 +85,7 @@
               </div>
           
               <div *ngIf="group2.virtual_meeting_link">
-                <ion-button expand="block" *ngIf="group2.phone_meeting_number" (click)="dialNum(meegroup2ting.phone_meeting_number)">
+                <ion-button expand="block" *ngIf="group2.phone_meeting_number" (click)="dialNum(group2.phone_meeting_number)">
                   <ion-ripple-effect></ion-ripple-effect>
                   <ion-icon name="call" > </ion-icon>&nbsp;{{'PHONE_MEETING' | translate }}
                 </ion-button> 

@@ -12,6 +12,7 @@ usage(){
     echo "       -i (Build for ios)"
     echo "       -a (Build for android)"
     echo "       -c (Clean old build files)"
+    echo "       -r (Release build for android when passed with -a)"
 	exit 1
 }
 
@@ -49,14 +50,17 @@ setup_node_npm() {
     fi
 }
 
-install_deps() {
-    red_text "** Installing ionic cli"
-    if ! [ command -v ionic ]; then
-        npm install -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+setup_ionic() {
+    if ! [ -x "$(command -v ionic)" ]; then
+        red_text "** Installing ionic cli globally"
+        npm install -g @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
     else
-        npm update -g --save @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
+        red_text "** Updating ionic cli globally"
+        npm update -g @ionic/cli @ionic/cordova-builders native-run cordova-res cordova 
     fi
+}
 
+install_npm_deps() {
     red_text "** Installing other npm dependencies"
     npm update --save \
         @ionic-native/google-maps \
@@ -107,8 +111,7 @@ build_for() {
     PLATFORM=$1
 
     red_text ">>>> Building for ${PLATFORM}"
-    setup_node_npm
-    install_deps
+    install_npm_deps
     red_text ">>>> ionic cordova platform add ${PLATFORM} --confirm --no-interactive"
     if [ ${PLATFORM} == "android" ]; then
         ionic cordova platform add android@11 --confirm --no-interactive 
@@ -123,18 +126,32 @@ build_for() {
     # fi 
     red_text ">>>> ionic cordova prepare ${PLATFORM}"
     ionic cordova prepare "${PLATFORM}" 
-    red_text ">>>> ionic cordova build ${PLATFORM}"
-    ionic cordova build "${PLATFORM}" 
+    red_text ">>>> ionic cordova build ${PLATFORM}" 
+    if [[ "${ANDROID_RELEASE}" -eq "true" ]]; then
+        ionic cordova build android --release --prod
+    else
+        ionic cordova build "${PLATFORM}"
+    fi
 }
 
+########
+# main #
+########
+ANDROID_RELEASE=false
+setup_node_npm
+setup_ionic
+
 [[ $# -eq 0 ]] && usage
-while getopts "abci" option; do
+while getopts "abcir" option; do
    case $option in
       c) # Clean old build files
          clean_old_build
          ;;
       a) # Build for android
          build_for android
+         ;;
+      r) # Android release build
+         ANDROID_RELEASE=true
          ;;
       i) # Build for ios
          build_for ios
